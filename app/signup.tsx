@@ -7,13 +7,13 @@ import { useNavigation } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
 import React, { useState } from 'react'
 import {
-    SafeAreaView,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View
 } from 'react-native'
 
 // Navigation params
@@ -45,6 +45,11 @@ const SignUpScreen: React.FC = () => {
     console.log('First Name:', firstName)
     console.log('Last Name:', lastName)
     console.log('Contact Number:', contactNumber)
+
+      navigation.navigate('verifyemail', {
+          publicKey: '44f5701a-f97c-450e-91fc-66924cddf247',
+          emailAddress: email
+        })
 
     const data = {
       firstName: firstName,
@@ -103,35 +108,12 @@ const SignUpScreen: React.FC = () => {
         <CustomHeader title='' onBack={() => navigation.goBack()} />
 
         {/* Header */}
-        <Text style={styles.title}>Sign up account</Text>
+        <Text style={styles.title}>Sign up to Dordle</Text>
         <Text style={styles.subtitle}>
-          Make sure you enter the email registered with Minance.
+          Your data security is our top priority. Our onboarding process and information validation ensures that access to your data remains secure.  You are able to pause the process and continue again at any point.
         </Text>
 
-        {/* Email Input */}
-        <View
-          style={[
-            styles.inputContainer,
-            { borderColor: focusEmail ? COLORS.primary : '#ccc' }
-          ]}
-        >
-          <Feather
-            name='mail'
-            size={20}
-            color={COLORS.neutralBlack}
-            style={styles.icon}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder='Your email'
-            keyboardType='email-address'
-            autoCapitalize='none'
-            value={email}
-            onChangeText={setEmail}
-            onFocus={() => setFocusEmail(true)}
-            onBlur={() => setFocusEmail(false)}
-          />
-        </View>
+  
 
         <View
           style={[
@@ -178,6 +160,31 @@ const SignUpScreen: React.FC = () => {
             onBlur={() => setFocusLastName(false)}
           />
         </View>
+
+              {/* Email Input */}
+        <View
+          style={[
+            styles.inputContainer,
+            { borderColor: focusEmail ? COLORS.primary : '#ccc' }
+          ]}
+        >
+          <Feather
+            name='mail'
+            size={20}
+            color={COLORS.neutralBlack}
+            style={styles.icon}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder='Email Address'
+            keyboardType='email-address'
+            autoCapitalize='none'
+            value={email}
+            onChangeText={setEmail}
+            onFocus={() => setFocusEmail(true)}
+            onBlur={() => setFocusEmail(false)}
+          />
+        </View>
         <View
           style={[
             styles.inputContainer,
@@ -200,67 +207,8 @@ const SignUpScreen: React.FC = () => {
             onBlur={() => setFocusContactNumber(false)}
           />
         </View>
-        {/* Password Input */}
-        <View
-          style={[
-            styles.inputContainer,
-            { borderColor: focusPwd ? COLORS.primary : '#ccc' }
-          ]}
-        >
-          <Feather
-            name='key'
-            size={20}
-            color={COLORS.neutralBlack}
-            style={styles.icon}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder='Password'
-            secureTextEntry={securePwd}
-            value={password}
-            onChangeText={setPassword}
-            onFocus={() => setFocusPwd(true)}
-            onBlur={() => setFocusPwd(false)}
-          />
-          <TouchableOpacity onPress={() => setSecurePwd(!securePwd)}>
-            <Feather
-              name={securePwd ? 'eye-off' : 'eye'}
-              size={20}
-              color={COLORS.neutralBlack}
-            />
-          </TouchableOpacity>
-        </View>
 
-        {/* Confirm Password Input */}
-        <View
-          style={[
-            styles.inputContainer,
-            { borderColor: focusConfirm ? COLORS.primary : '#ccc' }
-          ]}
-        >
-          <Feather
-            name='key'
-            size={20}
-            color={COLORS.neutralBlack}
-            style={styles.icon}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder='Retype password'
-            secureTextEntry={secureConfirm}
-            value={confirm}
-            onChangeText={setConfirm}
-            onFocus={() => setFocusConfirm(true)}
-            onBlur={() => setFocusConfirm(false)}
-          />
-          <TouchableOpacity onPress={() => setSecureConfirm(!secureConfirm)}>
-            <Feather
-              name={secureConfirm ? 'eye-off' : 'eye'}
-              size={20}
-              color={COLORS.neutralBlack}
-            />
-          </TouchableOpacity>
-        </View>
+
 
         {/* Sign Up Button */}
         <TouchableOpacity

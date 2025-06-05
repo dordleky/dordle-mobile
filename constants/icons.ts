@@ -113,7 +113,7 @@ const dordle = require("../assets/icons/dordle.png");
 // const premium1 = require("../assets/icons/premium1.png");
 // const premium2 = require("../assets/icons/premium2.png");
 // const apple = require("../assets/icons/apple.png");
-// const paypal = require("../assets/icons/paypal.png");
+ const paypal = require("../assets/icons/paypal.png");
 // const creditCard = require("../assets/icons/credit-card.png");
 // const share = require("../assets/icons/share.png");
 // const shareOutline = require("../assets/icons/share-outline.png");
@@ -399,7 +399,7 @@ export default {
     // premium1,
     // premium2,
     // apple,
-    // paypal,
+     paypal,
     // creditCard,
     // share,
     // shareOutline,

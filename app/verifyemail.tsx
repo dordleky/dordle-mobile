@@ -1,4 +1,3 @@
-import Button from '@/components/Button'
 import CustomHeader from '@/components/CustomHeader'
 import { COLORS, images, SIZES } from '@/constants'
 import { NavigationProp } from '@react-navigation/native'
@@ -50,15 +49,19 @@ const VerifyEmailScreen: React.FC = () => {
         console.log(response.status) // HTTP status code
         console.log(response.headers) // HTTP headers
 
-        setModalVisible(true)
-        // var publicKey = response.data.publicKey
-        // // Navigate to the next screen with the publicKey
-        // navigation.navigate('verifyemail', {
-        //   publicKey: publicKey
-        // })
+        //setModalVisible(true)
+         var publicKey = response.data.publicKey
+         // Navigate to the next screen with the publicKey
+         navigation.navigate('accountverification', {
+           publicKey: publicKey
+         })
       })
       .catch(error => {
         if (error.response) {
+
+           navigation.navigate('errorscreen', {
+           publicKey: publicKey
+         })
           // Server responded with a status other than 200 range
           console.log(error.response.data)
           console.log(error.response.status)
@@ -132,7 +135,7 @@ const VerifyEmailScreen: React.FC = () => {
           <Text style={styles.resendText}>Resend code</Text>
         </TouchableOpacity>
 
-        <Button
+        {/* <Button
           filled
           title='Confirmation'
           style={{
@@ -140,7 +143,7 @@ const VerifyEmailScreen: React.FC = () => {
             marginVertical: 64
           }}
           onPress={() => setModalVisible(true)}
-        />
+        /> */}
 
         {/* Success Modal */}
         <Modal transparent visible={modalVisible} animationType='slide'>
